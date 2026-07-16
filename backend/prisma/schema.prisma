@@ -1,0 +1,53 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum QuestionType {
+  LETTER_TO_MORSE
+  MORSE_TO_LETTER
+}
+
+model User {
+  id           Int    @id @default(autoincrement())
+  email        String @unique
+  name         String
+  password     String   // هنا لازم يكون الاسم "password"
+  role         String   @default("USER")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Question {
+  id        String       @id @default(uuid())
+  letter    String // الحرف العربي
+  morseCode String // شفرة مورس المقابلة
+  type      QuestionType @default(LETTER_TO_MORSE)
+  isActive  Boolean      @default(true)
+  createdAt DateTime     @default(now())
+
+  @@map("questions")
+}
+
+model ExamAttempt {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  score     Int
+  total     Int      @default(10)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("exam_attempts")
+}
