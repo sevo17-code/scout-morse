@@ -1,13 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { FaFacebook, FaYoutube, FaShieldAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaFacebook, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
-  const navigate = useNavigate();
-
-  const handleAdminRedirect = () => {
-    navigate('/login');
-  };
-
   return (
     <footer className="bg-scout-dark text-white/80 border-t-4 border-scout-gold mt-16">
       <div className="container mx-auto px-6 py-12">
@@ -33,9 +27,7 @@ const Footer = () => {
             <h3 className="text-lg font-bold text-scout-gold mb-4 border-b-2 border-scout-gold/40 pb-2">روابط سريعة</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/" className="hover:text-scout-gold transition">الرئيسية</Link></li>
-              <li><Link to="/learning" className="hover:text-scout-gold transition">طريقة التعلم</Link></li>
               <li><Link to="/exercises" className="hover:text-scout-gold transition">التدريبات</Link></li>
-              <li><Link to="/leaderboard" className="hover:text-scout-gold transition">لوحة الصدارة</Link></li>
             </ul>
           </div>
 
@@ -69,14 +61,6 @@ const Footer = () => {
         {/* السطر السفلي مع الزر المخفي */}
         <div className="border-t border-white/10 mt-8 pt-4 text-center text-xs text-gray-500 relative">
           <p>Scout Morse © جميع الحقوق محفوظة {new Date().getFullYear()}</p>
-          
-          <button 
-            onClick={handleAdminRedirect}
-            className="absolute left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 text-[10px] text-gray-700 hover:text-scout-gold transition duration-300 bg-gray-900/30 px-3 py-1 rounded-full hover:bg-gray-800/50"
-            title="دخول المشرف"
-          >
-            <FaShieldAlt className="inline-block ml-1" /> دخول المشرف
-          </button>
         </div>
       </div>
     </footer>

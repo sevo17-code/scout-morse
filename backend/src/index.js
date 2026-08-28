@@ -3,10 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import authRoutes from './routes/auth.routes.js';
 import questionRoutes from './routes/question.routes.js';
 import examRoutes from './routes/exam.routes.js';
-import adminRoutes from './routes/admin.routes.js';
 
 dotenv.config();
 
@@ -23,10 +21,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Scout Morse API شغالة ✅' });
 });
 
-app.use('/api/auth', authRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/exam', examRoutes);
-app.use('/api/admin', adminRoutes);
 
 // هاندلر عام للأخطاء غير المتوقعة
 app.use((err, req, res, next) => {

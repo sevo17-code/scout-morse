@@ -5,8 +5,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum Role {
@@ -20,13 +21,16 @@ enum QuestionType {
 }
 
 model User {
-  id           Int    @id @default(autoincrement())
-  email        String @unique
+  id           String   @id @default(uuid())
+  email        String   @unique
   name         String
-  password     String   // هنا لازم يكون الاسم "password"
+  password     String
   role         String   @default("USER")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  examAttempts ExamAttempt[]
+
+  @@map("users")
 }
 
 model Question {

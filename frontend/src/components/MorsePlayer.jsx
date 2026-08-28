@@ -1,7 +1,7 @@
 // src/components/MorsePlayer.jsx
 import { playMorseAudio } from '../utils/morseHelpers.js';
 
-export default function MorsePlayer({ code, label = '🔊 استمع للشفرة' }) {
+export default function MorsePlayer({ code, label = ' استمع للشفرة' }) {
   function handlePlay() {
     if (code) playMorseAudio(code);
   }
